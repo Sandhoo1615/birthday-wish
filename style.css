@@ -1,0 +1,356 @@
+body,
+html {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* Hide scrollbars */
+}
+
+#app {
+    position: fixed;
+    /* Ensure it stays in place */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    /* Behind the cake */
+}
+
+#cake-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1;
+    /* Place cake above butterflies*/
+}
+
+@import url("https://fonts.google.com/share?selection.family=Tangerine:wght@400;700");
+@import url("https://fonts.google.com/share?selection.family=Dancing+Style:wght@400;700");
+*,
+*:before,
+*:after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.svg {
+    position: absolute;
+    width: 0;
+    height: 0;
+}
+
+.candle-container,
+.plate,
+.wrapper {
+    display: grid;
+    place-items: center;
+}
+
+.wrapper {
+    /* position: relative;  No need to position relatively, cake is now centered */
+    height: 100vh;
+    min-height: 600px;
+    background: transparent;
+    /*  Remove background */
+}
+
+.star {
+    filter: drop-shadow(0 0 6px rgba(255, 200, 0, 0.9)) drop-shadow(0 0 12px rgba(255, 150, 0, 0.7));
+}
+
+.greeting {
+    font-family: "Dancing Style", cursive;
+    font-size: 1.8rem;
+    color: #000000;
+    transform: scale(0);
+    margin-top: 60px;
+    text-align: center;
+    /* centers text inside */
+    width: 100%;
+    /* ensures alignment applies */
+    line-height: 1.3
+}
+
+.plate {
+    position: relative;
+    width: 250px;
+    height: 75px;
+    background: #f1f1f1;
+    margin-top: 0;
+    border-radius: 50%;
+    box-shadow: 0px 3px 5px 0px #aaa;
+}
+
+.cake-wrap {
+    position: absolute;
+    bottom: 50%;
+}
+
+.cake-base {
+    position: relative;
+    width: 200px;
+    height: 50px;
+    background: #c5a5c0;
+}
+
+.cake-base .base-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+}
+
+.cake-base .base-front:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    height: 55px;
+    transform: translatey(-50%);
+    background: inherit;
+    border-radius: 50%;
+}
+
+.cake-base .base-top {
+    position: absolute;
+    width: 100%;
+    height: 65px;
+    top: 0;
+    transform: translatey(-50%);
+    border-radius: 50%;
+    background: inherit;
+}
+
+.cake-base .base-top:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    clip-path: polygon(0 0, 0% 50%, 100% 50%, 100% 0);
+}
+
+.cake-base .base-top:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border-bottom-color: black;
+    clip-path: polygon(0 50%, 60% 50%, 60% 101%, 0 101%);
+}
+
+.cake-topping {
+    position: absolute;
+    bottom: 0%;
+    width: 200px;
+    height: 100px;
+    z-index: 99;
+}
+
+.cake-topping .topping-front {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, #b381ae 40%, transparent);
+}
+
+.cake-topping .topping-front .top-layer {
+    height: 30%;
+    background: #b381ae;
+}
+
+.cake-topping .topping-front .bottom-layer {
+    position: relative;
+    height: 70%;
+    background: #b381ae;
+    clip-path: url("#my-clip-path");
+}
+
+.cake-topping .topping-top {
+    background: #b381ae;
+    position: absolute;
+    width: 100%;
+    height: 65px;
+    top: 0;
+    transform: translatey(-50%);
+    border-radius: 50%;
+    z-index: 9;
+}
+
+.cake-topping .topping-top:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    clip-path: polygon(0 0, 0% 50%, 100% 50%, 100% 0);
+}
+
+.cake-topping .topping-top:after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    box-shadow: inset 0 -1px 1px 2px rgba(200, 169, 195, 0.5);
+    clip-path: polygon(10% 50%, 70% 50%, 70% 101%, 10% 101%);
+}
+
+.candle-container {
+    width: 200px;
+    position: absolute;
+    bottom: 60%;
+    z-index: 9999;
+    opacity: 0;
+}
+
+.candle-container .candle-wrap {
+    position: relative;
+    width: 15px;
+}
+
+.candle-container .flame-wrap {
+    position: relative;
+    z-index: 99;
+    width: 100%;
+    background: #fcc56c;
+    height: 30px;
+    transform-origin: bottom center;
+    transform: scale(0);
+    clip-path: url(#my-flame-path);
+}
+
+.candle-container .candle-top {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translatey(-50%);
+    width: 100%;
+    height: 8px;
+    background: white;
+    border-radius: 50%;
+    z-index: 9;
+    background: radial-gradient(#eee, #f0abf0);
+}
+
+.candle-container .candle-base {
+    position: relative;
+    width: 100%;
+    height: 75px;
+    margin: 2px 0;
+    background: repeating-linear-gradient(45deg, #eee, #f0abf0 20%);
+}
+
+.candle-container .candle-base:before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #eee;
+    transform: translateY(50%);
+    height: 5px;
+    width: 100%;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+.candle-container .candle-base:after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translate(-50%, 50%);
+    height: 10px;
+    width: 200%;
+    border-radius: 50%;
+    background: radial-gradient(#9e7199, #b381ae);
+    z-index: -2;
+}
+
+.candle-container .star {
+    width: 15px;
+    height: 15px;
+    position: absolute;
+    background-color: orange;
+    clip-path: url(#my-star-path);
+    opacity: 0;
+}
+
+.candle-container .star:nth-of-type(1) {
+    top: -20%;
+    left: 30%;
+}
+
+.candle-container .star:nth-of-type(2) {
+    top: 30%;
+    left: 10%;
+}
+
+.candle-container .star:nth-of-type(3) {
+    top: -10%;
+    left: 85%;
+}
+
+.candle-container .star:nth-of-type(4) {
+    top: 35%;
+    left: 65%;
+}
+
+.candle-container .star:nth-of-type(5) {
+    top: 55%;
+    left: 90%;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.glass-card {
+    background: rgba(71, 64, 64, 0.35);
+    border-radius: 25px;
+    padding: 20px;
+    width: 280px;
+    height: 420px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(12px);
+    display: flex;
+    justify-content: column;
+    align-items: center;
+    position: relative;
+}
+
+.wrapper {
+    transform: scale(0.7);
+    /* Shrinks cake to fit inside card */
+    margin-top: -130px;
+    /* Adjust vertical position */
+}
+
+.hidden-btn {
+    position: absolute;
+    bottom: 20px;
+    /* distance from bottom */
+    right: 65px;
+    /* distance from right */
+    padding: 15px 35px;
+    background: #ffb347;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: white;
+    cursor: pointer;
+    transform: scale(1);
+    opacity: 1;
+}

@@ -1,0 +1,105 @@
+@import url("https://fonts.cdnfonts.com/css/cookie");
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #66c5ff;
+    overflow: hidden;
+    font-family: "cookie", sans-serif;
+}
+
+#fade-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* PARTICLES */
+
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.particle {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: rgb(168, 4, 160);
+    border-radius: 50%;
+    animation: floatUp 8s linear infinite;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-200vh);
+    }
+}
+
+
+/* TEXT */
+
+h1 {
+    position: absolute;
+    text-align: center;
+    max-width: 35ch;
+    font-size: 2.8rem;
+    color: #000;
+    z-index: 2;
+}
+
+span {
+    opacity: 0;
+    filter: blur(4px);
+    display: inline-block;
+}
+
+
+/* Fade-in animation */
+
+.fade-in span {
+    animation: fadeIn 1s forwards ease-out;
+    animation-delay: calc(var(--i) * 0.14s);
+}
+
+
+/* Fade-out animation */
+
+.fade-out span {
+    animation: fadeOut 0.9s forwards ease-in;
+    animation-delay: calc(var(--i) * 0.06s);
+}
+
+@keyframes fadeIn {
+    100% {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+@keyframes fadeOut {
+    100% {
+        opacity: 0;
+        filter: blur(9px);
+    }
+}
